@@ -9,9 +9,13 @@ kseal() {
 }
 
 alias k='kubectl'
+alias kubectx='kubectl ctx'
+alias kubens='kubectl ns'
 # alias get_k8s_token="kubectl -n kube-system describe secret \$\(kubectl -n kube-system get secret | grep admin-user | cut -f1 -d ' '\) | grep -E '^token' | cut -f2 -d':' | tr -d '\t'"
 
 if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
 fi
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
