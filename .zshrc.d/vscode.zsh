@@ -1,0 +1,1 @@
+alias code='/mnt/c/Users/russell.hall/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
