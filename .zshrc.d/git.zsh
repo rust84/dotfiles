@@ -48,3 +48,6 @@ git_update() {
 		git merge upstream/master
 	fi
 }
+
+#Fix for GPG signing
+export GPG_TTY=$(tty)
