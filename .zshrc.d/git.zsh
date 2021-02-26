@@ -49,5 +49,5 @@ git_update() {
 	fi
 }
 
-#Fix for GPG signing
+#GPG signing tty
 export GPG_TTY=$(tty)

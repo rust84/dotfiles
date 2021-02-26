@@ -132,9 +132,10 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
   required = true
-
 [user]
-	signingkey = AE41EBF6F17BDCDC
+	name = Russell Hall
+	email = russell.hall@actual-experience.com
+	signingkey = FFF7ABB487BF85CD
 [commit]
 	gpgsign = true
 [gpg]
