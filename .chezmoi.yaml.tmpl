@@ -25,8 +25,13 @@
 {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
+{{- $srcRoot := (joinPath .chezmoi.homeDir "repos") -}}
+{{- $sourceDir := "" -}}
+{{- $dotfilesrepo := "dotfiles" -}}
+{{- $sourceDir = (printf "%s/%s" $srcRoot $dotfilesrepo) -}}
+
 format: yaml
-sourceDir: {{ .chezmoi.sourceDir }}
+sourceDir: {{ .chezmoi.homeDir }}/repos/dotfiles
 
 data:
   personal: {{ $personal }}
@@ -34,7 +39,6 @@ data:
   agekey: {{ $agekey }}
   yubikey: {{ $yubikey }}
   kubernetes: {{ $kubernetes }}
-  srcroot: {{ $srcRoot }}
   dotfilesdir: {{ $sourceDir }}
   osid: {{ $osid | quote }}
 
