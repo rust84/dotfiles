@@ -17,7 +17,7 @@ k9s:
   currentContext: admin@cluster-0
   currentCluster: cluster-0
   clusters:
-    hegira:
+    cluster-0:
       namespace:
         active: all
         favorites:
