@@ -1,0 +1,47 @@
+{{- $personal := false -}}{{/* true if this is a personal machine */}}
+{{- $personal = promptBool "personal" -}}
+
+{{- $work := false -}}{{/* true if this is a work machine */}}
+{{- $agekey := false -}}{{/* true if this machine has agekey to decrypt secret */}}
+{{- $yubikey := false -}}{{/* true if this machine requires yubikey setup */}}
+{{- $kubernetes := false -}}{{/* true if this machine is used for Kubernetes work */}}
+
+{{- if $personal -}}
+  {{- $personal = true -}}
+  {{- $work = false -}}
+  {{- $agekey = true -}}
+  {{- $kubernetes = true -}}
+  {{- $yubikey = true -}}
+{{- else -}}
+  {{- $personal = false -}}
+  {{- $work = true -}}
+  {{- $agekey = true -}}
+  {{- $kubernetes = true -}}
+  {{- $yubikey = true -}}
+{{- end -}}
+
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+format: yaml
+sourceDir: {{ .chezmoi.sourceDir }}
+
+data:
+  personal: {{ $personal }}
+  work: {{ $work }}
+  agekey: {{ $agekey }}
+  yubikey: {{ $yubikey }}
+  kubernetes: {{ $kubernetes }}
+  srcroot: {{ $srcRoot }}
+  dotfilesdir: {{ $sourceDir }}
+  osid: {{ $osid | quote }}
+
+encryption: age
+
+{{- if $agekey }}
+age:
+  identity: {{ .chezmoi.homeDir }}/.config/age/keys.txt
+  recipient: age1knsdzqjgfty7fghdvk8ayr4kmj9kre8nqcg5tvjpjfy6m7a5ap8srhjd6k
+{{- end }}

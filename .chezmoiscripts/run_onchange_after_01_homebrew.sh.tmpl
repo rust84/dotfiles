@@ -1,0 +1,20 @@
+{{- if (eq .chezmoi.os "linux") -}}
+#!{{ lookPath "bash" }}
+
+set -ev pipefail
+
+which -a brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+brew="/home/linuxbrew/.linuxbrew/bin/brew"
+
+# 3. Install Homebrew packages
+$brew install aws-rotate-key \
+                asdf \
+                bitwarden-cli \
+                docker-credential-helper-ecr
+
+$brew update && $brew upgrade
+
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/russell/.bash_profile
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+{{- end -}}

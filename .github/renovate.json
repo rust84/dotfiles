@@ -1,0 +1,68 @@
+{
+  "extends": [
+    ":enableRenovate",
+    "config:base",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    "docker:enableMajor",
+    ":enablePreCommit",
+    "github>aquaproj/aqua-renovate-config:installer-script#1.2.0(home/.chezmoiscripts/.*install-prerequisites\\.sh\\.tmpl)",
+    "github>aquaproj/aqua-renovate-config:file#1.2.0(dot_config/aqua\\.yaml\\.tmpl)",
+    "github>aquaproj/aqua-renovate-config:golang-go#1.2.0(dot_config/aqua\\.yaml\\.tmpl)"
+  ],
+  "platform": "github",
+  "username": "rust84-bot[bot]",
+  "repositories": ["rust84/ditfiles"],
+  "onboarding": false,
+  "requireConfig": false,
+  "gitAuthor": "rust84-bot <103048774+rust84-bot[bot]@users.noreply.github.com>",
+  "timezone": "Europe/London",
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "suppressNotifications": ["prIgnoreNotification"],
+  "rebaseWhen": "conflicted",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{newVersion}}",
+  "commitMessageSuffix": "",
+  "semanticCommitScope": "",
+  "regexManagers": [
+    {
+      "fileMatch": ["\\.chezmoiscripts\\/.+\\.sh\\.tmpl$"],
+      "matchStrings": [
+        "# renovate: depName=(?<depName>.*) datasource=(?<datasource>.*)\\n\\s*current_\\w+_version=(?<currentValue>.+)\\b"
+      ]
+    }
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "semanticCommitType": "feat!"
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat"
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": ["aquaproj/aqua-registry"]
+    },
+    {
+      "matchPackageNames": "kubernetes-sigs/kustomize",
+      "versioning": "regex:^\\w+\\/v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+    }
+  ]
+}

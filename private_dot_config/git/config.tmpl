@@ -1,0 +1,42 @@
+# This is Git's per-user configuration file.
+[init]
+  defaultBranch = main
+
+[format]
+  signOff = true
+
+[core]
+  editor = vim
+  excludesfile = {{ .chezmoi.homeDir }}/.config/git/gitignore_global
+
+[commit]
+{{ if or $.personal $.work -}}
+gpgsign = true
+{{- else }}
+gpgsign = false
+{{- end }}
+
+[merge]
+  ff = only
+
+[pull]
+  rebase = false
+
+[status]
+  submoduleSummary = false
+
+[tag]
+  forceSignAnnotated = true
+
+[gpg]
+  program = gpg
+
+[url "ssh://git@github.com/"]
+  pushInsteadOf = https://github.com/
+
+[include]
+{{ if $.work -}}
+  path = {{ .chezmoi.homeDir }}/.config/git/config_work
+{{- else }}
+  path = {{ .chezmoi.homeDir }}/.config/git/config_personal
+{{- end }}

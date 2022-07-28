@@ -1,0 +1,10 @@
+{{ if eq .chezmoi.os "linux" -}}
+# Configure GPG
+set -gx GPG_TTY (tty)
+{{- end }}
+
+# Set up paths
+fish_add_path "/usr/local/sbin"
+fish_add_path "{{ .chezmoi.homeDir }}/.local/bin"
+
+set -U fish_greeting

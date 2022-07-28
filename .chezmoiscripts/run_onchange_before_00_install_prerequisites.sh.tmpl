@@ -1,0 +1,55 @@
+{{- if (eq .chezmoi.osRelease.id "fedora") -}}
+#!{{ lookPath "bash" }}
+
+set -eufo pipefail
+
+# Install repos
+sudo -E dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+sudo -E dnf install -y dnf-utils
+
+echo "updating packages"
+{{   if ne .chezmoi.username "root" -}}
+sudo -E dnf update
+sudo -E dnf upgrade -y
+{{   else -}}
+dnf update
+dnf upgrade -y
+{{   end -}}
+
+echo "Installing global linux apps (native + WSL)"
+sudo -E dnf install -y \
+  ack \
+  age \
+  ansible \
+  bat \
+  curl \
+  cronie \
+  docker \
+  duf \
+  fish \
+  fzf \
+  git \
+  gh \
+  htop \
+  lsd \
+  neovim \
+  rpmfusion-nonfree-release-tainted \
+  dnf-plugins-core \
+  nfs-utils \
+  nmap \
+  python-pip \
+  ripgrep \
+  starship \
+  syncthing \
+  tree \
+  unzip \
+  util-linux-user \
+  wget \
+  zoxide
+
+echo -e "\033[0;32m>>>>> Finish Setting Up Arch Linux Packages <<<<<\033[0m"
+echo -e "\033[0;32m>>>>> Add user to docker group (Req. sudo) <<<<<\033[0m"
+sudo usermod -aG docker $USER
+echo -e "\033[0;32m>>>>> Logout/Login required to catch new user permissions  <<<<<\033[0m"
+{{  end -}}
