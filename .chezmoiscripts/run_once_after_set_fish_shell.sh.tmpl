@@ -1,11 +1,18 @@
-{{- if eq .chezmoi.os "linux" -}}
 #!{{ lookPath "bash" }}
-
-set -ev pipefail
-
-# 1. Change default sh to ZSH
-if [[ $(awk -F ":${HOME}:" 'NF>1 {print $2}' /etc/passwd) != $(which fish) ]]; then
-  sudo chsh -s $(which fish) $(whoami)
+fish_path=$(which fish)
+if ! grep -q "${fish_path}" "/etc/shells"; then
+  echo 'Adding fish shell to system shells...'
+  sudo sh -c "echo ${fish_path} >> /etc/shells"
 fi
 
-{{- end -}}
+{{ if eq .chezmoi.os "linux" -}}
+current_shell=$(getent passwd {{ .chezmoi.username }} | cut -d: -f7)
+{{- else if eq .chezmoi.os "darwin" }}
+current_shell=$(dscl . -read {{ .chezmoi.homeDir }} UserShell)
+current_shell=${current_shell/#"UserShell: "}
+{{- end }}
+
+if [[ "$current_shell" != "${fish_path}" ]]; then
+  echo 'Setting fish shell as default shell...'
+  chsh -s "${fish_path}"
+fi
