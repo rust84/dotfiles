@@ -51,4 +51,4 @@ behavior:
   #   always: Always prints context headers, even if stdout is not a TTY.
   #   never:  Never prints context headers.
   # Default: auto
-  print_context_in_exec: Auto
+  print_context_in_exec: auto
