@@ -9,3 +9,8 @@ fish_add_path "{{ .chezmoi.homeDir }}/.local/bin"
 fish_add_path "{{ .chezmoi.homeDir }}/.krew/bin"
 
 set -U fish_greeting
+
+# persist changes
+if test -f "$XDG_CACHE_HOME/wal/wal"
+  cat $HOME/.cache/wal/wal | xargs wal -qi
+end
