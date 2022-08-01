@@ -1,0 +1,30 @@
+{{- if (lookPath "code") -}}
+#!{{ lookPath "bash" }}
+
+EXTENSIONS=(
+    redhat.ansible \
+    dhoeric.ansible-vault \
+    aws-scripting-guy.cform \
+    ms-azuretools.vscode-docker \
+    mitchdenny.ecdc \
+    eamodio.gitlens \
+    hashicorp.terraform \
+    oderwat.indent-rainbow \
+    ms-kubernetes-tools.vscode-kubernetes-tools \
+    esbenp.prettier-vscode \
+    ms-python.vscode-pylance \
+    ms-python.python \
+    redhat.vscode-yaml \
+    samuelcolvin.jinjahtml \
+    bmalehorn.vscode-fish \
+
+{{- if $.personal }}
+    signageos.signageos-vscode-sops
+{{- end }}
+)
+
+for EXTENSION in ${EXTENSIONS[@]}
+    do
+        code --install-extension $EXTENSION --force
+    done
+{{- end }}
