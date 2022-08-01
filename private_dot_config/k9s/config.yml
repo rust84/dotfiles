@@ -19,19 +19,20 @@ k9s:
   clusters:
     cluster-0:
       namespace:
-        active: all
+        active: home
+        lockFavorites: false
         favorites:
-          - all
-          - collab
-          - database
-          - home
-          - kube-system
-          - media
-          - monitoring
-          - network
-          - security
+        - all
+        - collab
+        - database
+        - home
+        - kube-system
+        - media
+        - monitoring
+        - network
+        - security
       view:
-        active: cert-manager.io/v1/certificaterequests
+        active: po
       featureGates:
         nodeShell: false
       shellPod:
