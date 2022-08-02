@@ -7,8 +7,6 @@ abbr kdn 'kubectl describe node'
 abbr kgn 'kubectl get nodes'
 abbr wkgp 'watch kubectl get pod'
 abbr kx 'kubectl exec -it'
-abbr kubectx 'kubie ctx'
-abbr kubens 'kubie ns'
 {{- end }}
 
 # git
@@ -62,7 +60,8 @@ if type -q flux
     abbr fgka 'flux get kustomization --all'
     abbr fsa 'flux suspend kustomization --all'
     abbr fra 'flux resume kustomization --all'
-    abbr wfga 'watch flux get all'
+    abbr wfgk 'watch flux get kustomizations'
+    abbr wfgh 'watch flux get helmrelease'
     abbr upf 'update_flux'
 end
 
