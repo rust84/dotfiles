@@ -1,0 +1,8 @@
+{
+  "packageRules": [
+    {
+      "matchPackageNames": ["hashicorp/terraform"],
+      "allowedVersions": "1.1.7"
+    }
+  ]
+}
