@@ -6,7 +6,9 @@ registries:
     ref: v3.24.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
+  - name: twpayne/chezmoi@v2.20.0
   - name: FiloSottile/age@v1.0.0
+  - name: sharkdp/fd@v8.4.0
   - name: sharkdp/bat@v0.21.0
   - name: cli/cli@v2.14.3
   - name: cue-lang/cue@v0.4.3
@@ -37,8 +39,7 @@ packages:
   - name: kubernetes-sigs/krew@v0.4.3
   - name: sbstp/kubie@v0.17.2
   - name: hidetatz/kubecolor@v0.0.20
-  - name: kubernetes/kubectl
-    version: v1.24.3
+  - name: kubernetes/kubectl@v1.24.3
   - name: kubernetes-sigs/kustomize@kustomize/v4.5.7
   - name: stern/stern@v1.21.0
   - name: budimanjojo/talhelper@v1.2.3
@@ -47,4 +48,5 @@ packages:
   - name: derailed/k9s@v0.26.3
   - name: vmware-tanzu/velero@v1.9.0
   - name: weaveworks/eksctl@v0.107.0
+  - name: kubernetes-sigs/cluster-api@v1.2.0
 {{- end }}
