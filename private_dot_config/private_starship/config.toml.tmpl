@@ -1,10 +1,6 @@
 format = """
-[╭─](white) $nix_shell$kubernetes$fill$git_branch$python$terraform$golang
+[╭─](white) $nix_shell$kubernetes$git_branch$git_status$fill$status$cmd_duration$aws$python$terraform$golang
 [╰─](white) $directory$character\n"""
-
-[character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[✖](bold red)"
 
 [directory]
 format = "[ $path]($style)[$read_only]($read_only_style) "
@@ -15,7 +11,22 @@ style = "blue"
 
 [git_branch]
 symbol = " "
-format = "[\\[$symbol$branch\\]]($style) "
+format = "on [\\[$symbol$branch\\]]($style) "
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "purple"
+conflicted = " "
+ahead = " "
+behind = " "
+diverged = " "
+up_to_date = " "
+untracked = " "
+stashed = " "
+modified = " "
+staged = " "
+renamed = " "
+deleted = " "
 
 [golang]
 symbol = " "
@@ -40,3 +51,27 @@ format = "[\\[$symbol$workspace\\]]($style) "
 
 [username]
 style_user = "bold blue"
+
+[fill]
+symbol = " "
+
+[status]
+disabled = false
+format = '[$symbol]($style) '
+symbol = " "
+success_symbol = " "
+style = "red"
+
+[cmd_duration]
+min_time = 2_000
+format = "took [$duration]($style) "
+style = "yellow"
+
+[aws]
+format = "[\\[$symbol($profile )(\\($region\\))( \\[$duration\\])\\]]($style) "
+symbol = " "
+style = "purple"
+
+[aws.region_aliases]
+eu-west-1 = "eu"
+us-east-2 = "us"
