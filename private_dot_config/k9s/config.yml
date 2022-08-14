@@ -6,6 +6,7 @@ k9s:
   logoless: false
   crumbsless: false
   readOnly: false
+  noExitOnCtrlC: true
   noIcons: false
   logger:
     tail: 100
@@ -26,10 +27,12 @@ k9s:
         - collab
         - database
         - home
+        - kasten-io
         - kube-system
         - media
         - monitoring
         - network
+        - rook-ceph
         - security
       view:
         active: po
