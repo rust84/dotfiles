@@ -1,10 +1,10 @@
-if type -q $HOME/.local/bin/lvim
-  set -gx EDITOR $HOME/.local/bin/lvim
-  set -gx VISUAL $HOME/.local/bin/lvim
-  set -gx KUBE_EDITOR $HOME/.local/bin/lvim
-  alias vim $HOME/.local/bin/lvim
-  alias vi $HOME/.local/bin/lvim
-  alias nano $HOME/.local/bin/lvim
+if type -q $HOME/.local/share/aqua/bin/nvim
+    set -gx EDITOR $HOME/.local/share/aqua/bin/nvim
+    set -gx VISUAL $HOME/.local/share/aqua/bin/nvim
+    set -gx KUBE_EDITOR $HOME/.local/share/aqua/bin/nvim
+    alias vim $HOME/.local/share/aqua/bin/nvim
+    alias vi $HOME/.local/share/aqua/bin/nvim
+    alias nano $HOME/.local/share/aqua/bin/nvim
 else
-  alias nvim vim
+    alias nvim vim
 end
