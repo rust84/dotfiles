@@ -11,10 +11,13 @@
 
 [commit]
 {{ if or $.personal $.work -}}
-gpgsign = true
+  gpgsign = true
 {{- else }}
-gpgsign = false
+  gpgsign = false
 {{- end }}
+
+[fetch]
+  writeCommitGraph = true
 
 [merge]
   ff = only
