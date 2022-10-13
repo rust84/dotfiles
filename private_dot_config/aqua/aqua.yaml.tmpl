@@ -3,7 +3,7 @@
 # https://aquaproj.github.io/
 registries:
   - type: standard
-    ref: v3.73.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v3.74.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
   - name: twpayne/chezmoi@v2.24.0
@@ -33,7 +33,7 @@ packages:
   - name: ajeetdsouza/zoxide@v0.8.3
   - name: aws/aws-cli@2.7.19
   - name: awslabs/amazon-ecr-credential-helper@v0.6.0
-  - name: operator-framework/operator-sdk@v1.23.0
+  - name: operator-framework/operator-sdk@v1.24.0
 
 {{- if $.kubernetes }}
   - name: fluxcd/flux2@v0.35.0
@@ -45,11 +45,11 @@ packages:
   - name: kubernetes-sigs/kustomize@kustomize/v4.5.7
   - name: stern/stern@v1.22.0
   - name: budimanjojo/talhelper@v1.5.3
-  - name: talos-systems/talos@v1.2.3
+  - name: talos-systems/talos@v1.2.5
   - name: hashicorp/vault@v1.11.4
   - name: derailed/k9s@v0.26.6
   - name: vmware-tanzu/velero@v1.9.2
   - name: weaveworks/eksctl@v0.114.0
-  - name: kubernetes-sigs/cluster-api@v1.2.2
+  - name: kubernetes-sigs/cluster-api@v1.2.3
   - name: FairwindsOps/pluto@v5.11.1
 {{- end }}
