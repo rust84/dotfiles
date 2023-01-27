@@ -12,10 +12,9 @@
 [commit]
 {{ if or $.personal $.work -}}
   gpgsign = true
-{{- else }}
+{{ else }}
   gpgsign = false
-{{- end }}
-
+{{ end }}
 [fetch]
   writeCommitGraph = true
 
