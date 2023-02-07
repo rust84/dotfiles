@@ -10,11 +10,12 @@
   excludesfile = {{ .chezmoi.homeDir }}/.config/git/gitignore_global
 
 [commit]
-{{ if or $.personal $.work -}}
+{{- if or $.personal $.work }}
   gpgsign = true
-{{ else }}
+{{- else }}
   gpgsign = false
-{{ end }}
+{{- end }}
+
 [fetch]
   writeCommitGraph = true
 
@@ -37,7 +38,7 @@
   pushInsteadOf = https://github.com/
 
 [include]
-{{ if $.work -}}
+{{- if $.work }}
   path = {{ .chezmoi.homeDir }}/.config/git/config_work
 {{- else }}
   path = {{ .chezmoi.homeDir }}/.config/git/config_personal
