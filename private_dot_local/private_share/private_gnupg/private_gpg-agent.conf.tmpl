@@ -6,4 +6,6 @@ max-cache-ttl-ssh 7200
 {{- if $.yubikey }}
 ttyname $GPG_TTY
 pinentry-program /usr/bin/pinentry-curses
+{{- else }}
+pinentry-program "/mnt/c/Program Files (x86)/GnuPG/bin/pinentry-basic.exe"
 {{- end }}
