@@ -3,7 +3,7 @@
 # https://aquaproj.github.io/
 registries:
   - type: standard
-    ref: v3.136.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v3.136.1 # renovate: depName=aquaproj/aqua-registry
 
 packages:
   - name: twpayne/chezmoi@v2.31.0
@@ -18,7 +18,7 @@ packages:
   - name: junegunn/fzf@0.38.0
   - name: charmbracelet/glow@v1.5.0
   - name: golang/go@1.20.1
-  - name: go-task/task@v3.20.0
+  - name: go-task/task@v3.21.0
   - name: stedolan/jq@jq-1.6
   - name: jesseduffield/lazygit@v0.34
   - name: Peltoche/lsd@0.23.1
@@ -35,7 +35,7 @@ packages:
   - name: operator-framework/operator-sdk@v1.27.0
 
 {{- if $.kubernetes }}
-  - name: fluxcd/flux2@v0.39.0
+  - name: fluxcd/flux2@v0.40.1
   - name: helm/helm@v3.11.1
   - name: kubernetes-sigs/krew@v0.4.3
   - name: sbstp/kubie@v0.19.3
@@ -43,13 +43,13 @@ packages:
   - name: kubernetes/kubectl@v1.26.1
   - name: stern/stern@v1.23.0
   - name: budimanjojo/talhelper@v1.6.1
-  - name: talos-systems/talos@v1.3.4
+  - name: talos-systems/talos@v1.3.5
   - name: hashicorp/vault@v1.12.3
   - name: derailed/k9s@v0.27.3
   - name: vmware-tanzu/velero@v1.10.1
-  - name: weaveworks/eksctl@v0.130.0
+  - name: weaveworks/eksctl@v0.131.0
   - name: kubernetes-sigs/cluster-api@v1.3.3
-  - name: FairwindsOps/pluto@v5.13.3
+  - name: FairwindsOps/pluto@v5.15.1
   - name: weaveworks/tf-controller/tfctl@v0.13.1
 {{- if $.work }}
   - name: kubernetes-sigs/kustomize@kustomize/v3.10.0
