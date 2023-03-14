@@ -52,8 +52,8 @@ packages:
   - name: FairwindsOps/pluto@v5.15.1
   - name: weaveworks/tf-controller/tfctl@v0.13.1
 {{- if $.work }}
-  - name: kubernetes-sigs/kustomize@kustomize/v3.10.0
+  - name: kubernetes-sigs/kustomize@kustomize/v5.0.1
 {{ else }}
-  - name: kubernetes-sigs/kustomize@kustomize/v4.5.7
+  - name: kubernetes-sigs/kustomize@kustomize/v5.0.1
 {{- end }}
 {{- end }}
