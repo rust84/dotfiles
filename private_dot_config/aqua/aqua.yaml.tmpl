@@ -54,8 +54,8 @@ packages:
   - name: yannh/kubeconform@v0.6.1
   - name: helm/chart-testing@v3.8.0
 {{- if $.work }}
-  - name: kubernetes-sigs/kustomize@kustomize/v3.6.0
+  - name: kubernetes-sigs/kustomize@kustomize/v5.0.2
 {{ else }}
-  - name: kubernetes-sigs/kustomize@kustomize/v5.0.1
+  - name: kubernetes-sigs/kustomize@kustomize/v5.0.2
 {{- end }}
 {{- end }}
