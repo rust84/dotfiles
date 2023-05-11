@@ -1,6 +1,21 @@
 {{- if (lookPath "code") -}}
 #!{{ lookPath "bash" }}
 
+# Define colors
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Function to print a message with a color
+print_msg() {
+	local msg=$1
+	local color=$2
+	echo -e "${color}${msg}${NC}"
+}
+
+print_msg "VSCode extensions ========================================================" $YELLOW
+
 EXTENSIONS=(
     redhat.ansible \
     dhoeric.ansible-vault \
