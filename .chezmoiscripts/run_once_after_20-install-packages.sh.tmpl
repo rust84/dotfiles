@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Define colors
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Function to print a message with a color
+print_msg() {
+	local msg=$1
+	local color=$2
+	echo -e "${color}${msg}${NC}"
+}
+
+print_msg "Package installs ========================================================" $YELLOW
+# Setup fedora cli utils
+{{- if hasKey .chezmoi.osRelease "idLike" -}}
+  {{- if (eq .chezmoi.osRelease.idLike "fedora") -}}
+    print_msg "Detected Fedora, triggering update" $GREEN
+    PACKAGE_FILE="{{ .chezmoi.homeDir }}/.config/.chezmoi_packages/fedora.txt"
+    sudo dnf upgrade
+  {{- end }}
+{{- end }}
+
+# Setup android cli utils
+{{- if (eq .chezmoi.os "android") -}}
+  print_msg "Detected Android, triggering update" $GREEN
+  PACKAGE_FILE="{{ .chezmoi.homeDir }}/.config/.chezmoi_packages/android.txt"
+  sudo dnf upgrade
+{{- end }}
+
+if [ -z "$PACKAGE_FILE" ]; then
+  print_msg "No valid OS detected, could not determine what packages to install.  Exiting..." $RED
+  exit 1
+fi
+
+# Print a message to indicate that the script is starting
+print_msg "Starting package installation... $PACKAGE_FILE" $GREEN
+
+packages=""
+
+# Loop over each package name and create one big list
+while read package; do
+  packages="$packages $package"
+done < "$PACKAGE_FILE"
+
+# Install all packages using dnf
+if [[ -n "$packages" ]]; then
+  print_msg "Installing packages: $packages..." $YELLOW
+  sudo dnf install -y $packages
+fi
+
+# Print a message to indicate that the script is finished
+print_msg "All packages installed successfully!" $GREEN
