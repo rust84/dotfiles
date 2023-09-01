@@ -15,16 +15,14 @@ print_msg() {
 
 print_msg "Package installs ========================================================" $YELLOW
 # Setup fedora cli utils
-{{- if hasKey .chezmoi.osRelease "idLike" -}}
-  {{- if (eq .chezmoi.osRelease.idLike "fedora") -}}
-    print_msg "Detected Fedora, triggering update" $GREEN
-    PACKAGE_FILE="{{ .chezmoi.homeDir }}/.config/.chezmoi_packages/fedora.txt"
-    sudo dnf upgrade
-  {{- end }}
+{{ if (eq .os "fedora") -}}
+  print_msg "Detected Fedora, triggering update" $GREEN
+  PACKAGE_FILE="{{ .chezmoi.homeDir }}/.config/.chezmoi_packages/fedora.txt"
+  sudo dnf upgrade
 {{- end }}
 
 # Setup android cli utils
-{{- if (eq .chezmoi.os "android") -}}
+{{ if (eq .os "android") -}}
   print_msg "Detected Android, triggering update" $GREEN
   PACKAGE_FILE="{{ .chezmoi.homeDir }}/.config/.chezmoi_packages/android.txt"
   sudo dnf upgrade

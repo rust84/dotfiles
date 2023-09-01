@@ -1,6 +1,6 @@
 {{- $personal := false -}}{{/* true if this is a personal machine */}}
 {{- $personal = promptBool "personal" -}}
-
+{{- $os := "" }}
 {{- $work := false -}}{{/* true if this is a work machine */}}
 {{- $agekey := false -}}{{/* true if this machine has agekey to decrypt secret */}}
 {{- $yubikey := false -}}{{/* true if this machine requires yubikey setup */}}
@@ -20,18 +20,18 @@
   {{- $yubikey = false -}}
 {{- end -}}
 
-{{- $osid := .chezmoi.os -}}
-{{- if hasKey .chezmoi.osRelease "id" -}}
-{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
-{{- end -}}
+{{ if eq .chezmoi.osRelease.id "fedoraremixforwsl" -}}
+  # Feodra Remix in WSL
+  {{ $os = "fedora" }}
+{{ end -}}
 
-{{- $srcRoot := (joinPath .chezmoi.homeDir "repos") -}}
-{{- $sourceDir := "" -}}
-{{- $dotfilesrepo := "dotfiles" -}}
-{{- $sourceDir = (printf "%s/%s" $srcRoot $dotfilesrepo) -}}
+{{ if eq .chezmoi.os "android" -}}
+  # Android
+  {{ $os = "android" }}
+{{ end -}}
 
 format: yaml
-sourceDir: {{ .chezmoi.homeDir }}/repos/dotfiles
+sourceDir: {{ .chezmoi.sourceDir | quote }}
 
 data:
   personal: {{ $personal }}
@@ -39,8 +39,7 @@ data:
   agekey: {{ $agekey }}
   yubikey: {{ $yubikey }}
   kubernetes: {{ $kubernetes }}
-  dotfilesdir: {{ $sourceDir }}
-  osid: {{ $osid | quote }}
+  os: {{ $os | quote }}
 
 encryption: age
 
