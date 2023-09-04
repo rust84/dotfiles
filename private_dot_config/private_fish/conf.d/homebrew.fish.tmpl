@@ -1,5 +1,5 @@
-{{- if lookPath "/opt/homebrew/bin/brew" }}
+{{- if lookPath "/home/linuxbrew/.linuxbrew/bin/brew" }}
 if status --is-interactive
-    eval (/opt/homebrew/bin/brew shellenv)
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 end
 {{- end }}
