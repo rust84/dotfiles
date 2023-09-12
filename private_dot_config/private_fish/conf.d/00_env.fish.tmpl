@@ -11,15 +11,13 @@ set -gx LESSHISTFILE "$XDG_CACHE_HOME/less/history"
 set -gx TERMINFO "$XDG_DATA_HOME/terminfo"
 set -gx TERMINFO_DIRS "$TERMINFO:/usr/share/terminfo"
 
-set -gx GOPATH "$XDG_DATA_HOME/go"
+set -gx GOPATH {{ .chezmoi.homeDir }}/.go
 
-set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
+set -gx CARGO_HOME "{{ .chezmoi.homeDir }}/cargo"
 set -gx GNUPGHOME "$XDG_DATA_HOME/gnupg"
 set -gx npm_config_cache "$XDG_CACHE_HOME/npm"
 
 set -gx BROWSER "wslview"
-
-set -gx PATH "$PATH:/mnt/c/Users/russell.hall/AppData/Local/Programs/Microsoft VS Code/bin"
 
 set -gx HOMEBREW_NO_ANALYTICS 1
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
