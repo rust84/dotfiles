@@ -1,12 +1,13 @@
 {{- if $.yubikey }}
 set wsl2_ssh_pageant_bin "{{ .chezmoi.homeDir }}/.local/bin/wsl2-ssh-pageant.exe"
+set config_path "C\:/Users/Russell/AppData/Local/gnupg"
 
 if type -q $wsl2_ssh_pageant_bin
   set -x GPG_AGENT_SOCK "$GNUPGHOME/S.gpg-agent"
   if not ss -a | grep -q "$GPG_AGENT_SOCK";
     rm -rf "$GPG_AGENT_SOCK"
     if test -x "$wsl2_ssh_pageant_bin";
-      setsid nohup socat UNIX-LISTEN:"$GPG_AGENT_SOCK,fork" EXEC:"$wsl2_ssh_pageant_bin --gpg S.gpg-agent" >/dev/null 2>&1 &
+      setsid nohup socat UNIX-LISTEN:"$GPG_AGENT_SOCK,fork" EXEC:"$wsl2_ssh_pageant_bin -gpgConfigBasepath $config_path --gpg S.gpg-agent" >/dev/null 2>&1 &
     else
       echo >&2 "WARNING: $wsl2_ssh_pageant_bin is not executable."
     end
