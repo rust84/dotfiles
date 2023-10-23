@@ -60,9 +60,5 @@ packages:
   - name: yannh/kubeconform@v0.6.3
   - name: helm/chart-testing@v3.9.0
   - name: norwoodj/helm-docs@v1.11.3
-{{- if $.work }}
   - name: kubernetes-sigs/kustomize@kustomize/v5.2.1
-{{ else }}
-  - name: kubernetes-sigs/kustomize@kustomize/v5.2.1
-{{- end }}
 {{- end }}
