@@ -28,6 +28,13 @@ print_msg "Package installs ====================================================
   sudo dnf upgrade
 {{- end }}
 
+# Setup ubuntu cli utils
+{{ if (eq .os "ubuntu") -}}
+  print_msg "Detected Ubuntu, triggering update" $GREEN
+  PACKAGE_FILE="{{ .chezmoi.homeDir }}/.config/.chezmoi_packages/ubuntu.txt"
+  sudo apt upgrade
+{{- end }}
+
 if [ -z "$PACKAGE_FILE" ]; then
   print_msg "No valid OS detected, could not determine what packages to install.  Exiting..." $RED
   exit 1
