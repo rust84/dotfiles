@@ -50,10 +50,19 @@ while read package; do
   packages="$packages $package"
 done < "$PACKAGE_FILE"
 
-# Install all packages using dnf
+
 if [[ -n "$packages" ]]; then
   print_msg "Installing packages: $packages..." $YELLOW
+
+{{ if (eq .os "fedora") -}}
+  # Install all packages using dnf
   sudo dnf install -y $packages
+{{- end }}
+
+{{ if (eq .os "ubuntu") -}}
+  # Install all packages using apt
+  sudo apt install -y $packages
+{{- end }}
 fi
 
 # Print a message to indicate that the script is finished
