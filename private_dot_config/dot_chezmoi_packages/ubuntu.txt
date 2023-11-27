@@ -1,11 +1,9 @@
   ack
   curl
-  cronie
   docker
   fish
   git
   htop
-  nfs-utils
   nmap
   python-pip
   tree
@@ -15,6 +13,5 @@
   cargo
   socat
   gcc
-  python-devel
   thefuck
   ansible-lint
