@@ -25,6 +25,11 @@
   {{ $os = "fedora" }}
 {{ end -}}
 
+{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+  # Feodra Remix in WSL
+  {{ $os = "ubuntu" }}
+{{ end -}}
+
 {{ if eq .chezmoi.os "android" -}}
   # Android
   {{ $os = "android" }}
