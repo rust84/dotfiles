@@ -1,4 +1,4 @@
-#!/bin/bash
+#!{{ lookPath "bash" }}
 
 # Define colors
 GREEN='\033[0;32m'
@@ -29,23 +29,6 @@ print_msg "Installing AGE key ==================================================
   mkdir -p {{ .chezmoi.homeDir }}/.config/age/
   touch {{ .chezmoi.homeDir }}/.config/age/keys.txt
   
-  # doppler login
-  doppler login
-
-  doppler secrets download -p chezmoi -c prd --no-file  | jq -r '.AGE_KEY' > ~/.config/sops/age/keys.txt
-{{ end -}}
-
-# Setup ubuntu cli utils
-{{ if (eq .os "ubuntu") -}}
-  print_msg "Detected Ubuntu, installing tools" $GREEN
-
-  sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl gnupg jq
-  curl -sLf --retry 3 --tlsv1.2 --proto "=https" 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' | sudo gpg --dearmor -o /usr/share/keyrings/doppler-archive-keyring.gpg
-  echo "deb [signed-by=/usr/share/keyrings/doppler-archive-keyring.gpg] https://packages.doppler.com/public/cli/deb/debian any-version main" | sudo tee /etc/apt/sources.list.d/doppler-cli.list
-  sudo apt-get update && sudo apt-get install doppler
-  mkdir -p {{ .chezmoi.homeDir }}/.config/age/
-  touch {{ .chezmoi.homeDir }}/.config/age/keys.txt
-
   # doppler login
   doppler login
 

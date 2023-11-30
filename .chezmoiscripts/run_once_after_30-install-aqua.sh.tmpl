@@ -28,11 +28,6 @@ fi
 
 # This script will run whenever I added something to .config/aqua.yaml
 # .config/aqua.yaml hash: {{ include "private_dot_config/aqua/aqua.yaml.tmpl" | sha256sum }}
-
-{{ if (eq .os "ubuntu") -}}
-export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
-{{ end -}}
-
 print_msg "Aqua is updating packages..." $GREEN
 aqua install -a
 
