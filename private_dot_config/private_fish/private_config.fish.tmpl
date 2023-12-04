@@ -19,3 +19,7 @@ set -U fish_greeting
 if test -f "$XDG_CACHE_HOME/wal/wal"
   cat $HOME/.cache/wal/wal | xargs wal -qi
 end
+
+{{ if $.work -}}
+fish_ssh_agent
+{{- end }}
