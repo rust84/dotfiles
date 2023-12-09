@@ -1,7 +1,7 @@
 {
   "extends": [
     ":enableRenovate",
-    "config:base",
+    "config:recommended",
     ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits",
@@ -18,7 +18,7 @@
   "username": "rust84-bot[bot]",
   "repositories": ["rust84/dotfiles"],
   "onboarding": false,
-  "requireConfig": false,
+  "requireConfig": "optional",
   "gitAuthor": "rust84-bot <103048774+rust84-bot[bot]@users.noreply.github.com>",
   "timezone": "Europe/London",
   "dependencyDashboardTitle": "Renovate Dashboard",
@@ -28,8 +28,9 @@
   "commitMessageExtra": "to {{newVersion}}",
   "commitMessageSuffix": "",
   "semanticCommitScope": "",
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": ["\\.chezmoiscripts\\/.+\\.sh\\.tmpl$"],
       "matchStrings": [
         "# renovate: depName=(?<depName>.*) datasource=(?<datasource>.*)\\n\\s*current_\\w+_version=(?<currentValue>.+)\\b"
@@ -39,11 +40,7 @@
   "packageRules": [
     {
       "matchDatasources": ["github-tags"],
-      "matchPackageNames": [
-        "aws/aws-cli",
-        "golang/go"
-
-      ],
+      "matchPackageNames": ["aws/aws-cli", "golang/go"],
       "versioning": "loose"
     }
   ]
