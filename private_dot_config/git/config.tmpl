@@ -8,7 +8,6 @@
 [core]
   editor = vim
   excludesfile = {{ .chezmoi.homeDir }}/.config/git/gitignore_global
-  hooksPath = {{ .chezmoi.homeDir }}/.config/git/hooks
 
 [commit]
 {{- if or $.personal $.work }}
