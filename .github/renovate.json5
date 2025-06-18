@@ -12,7 +12,7 @@
     "github>rust84/dotfiles//.github/renovate/allowedVersions",
     "github>rust84/dotfiles//.github/renovate/autoMerge",
     "github>aquaproj/aqua-renovate-config:installer-script#1.13.0(.chezmoiscripts/.*aqua\\.sh\\.tmpl)",
-    "github>aquaproj/aqua-renovate-config:file#1.13.0(private_dot_config/aqua/aqua\\.yaml\\.tmpl)"
+    "github>aquaproj/aqua-renovate-config:file#2.8.1(private_dot_config/aqua/aqua\\.yaml\\.tmpl)"
   ],
   "platform": "github",
   "username": "rust84-bot[bot]",
