@@ -1,0 +1,3 @@
+{{- if and (lookPath "argocd") $.work }}
+{{- output "argocd" "completion" "fish" | nindent 0 }}
+{{- end }}
