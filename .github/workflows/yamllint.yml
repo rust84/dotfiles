@@ -1,0 +1,17 @@
+name: YAML Lint
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  yamllint:
+    name: Validate YAML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Run yamllint
+        uses: ibiqlik/action-yamllint@v3
