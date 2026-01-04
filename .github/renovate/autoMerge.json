@@ -1,18 +1,14 @@
 {
   "packageRules": [
     {
-      "matchManagers": ["github-actions"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"]
+      "description": "Auto-merge minor and patch updates for all packages",
+      "matchUpdateTypes": ["minor", "patch"],
+      "platformAutomerge": true
     },
     {
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": ["aquaproj/aqua-registry"]
+      "description": "Auto-merge digest updates",
+      "matchUpdateTypes": ["digest"],
+      "platformAutomerge": true
     }
   ]
 }
