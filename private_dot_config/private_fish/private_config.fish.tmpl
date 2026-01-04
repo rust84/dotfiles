@@ -16,9 +16,9 @@ fish_add_path "/mnt/c/Users/russell.hall/AppData/Local/Programs/Microsoft VS Cod
 set -U fish_greeting
 
 # persist changes
-if test -f "$XDG_CACHE_HOME/wal/wal"
-  cat $HOME/.cache/wal/wal | xargs wal --backend colorz -qi
-end
+# if test -f "$XDG_CACHE_HOME/wal/wal"
+#   cat $HOME/.cache/wal/wal | xargs wal --backend colorz -qi
+# end
 
 {{ if $.work -}}
 fish_ssh_agent
