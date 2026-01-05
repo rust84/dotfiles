@@ -3,11 +3,13 @@
     {
       "description": "Auto-merge minor and patch updates for all packages",
       "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
       "platformAutomerge": true
     },
     {
       "description": "Auto-merge digest updates",
       "matchUpdateTypes": ["digest"],
+      "automerge": true,
       "platformAutomerge": true
     }
   ]
