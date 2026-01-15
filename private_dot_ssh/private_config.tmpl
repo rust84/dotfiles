@@ -1,9 +1,3 @@
-{{- if $.work }}
-Include work.conf
-{{ else }}
-Include personal.conf
-{{ end -}}
-
 # Global Config Settings
 host github.com
     User git
@@ -13,3 +7,9 @@ host gh-personal
     User git
     IdentityFile ~/.ssh/gh_personal
     IdentitiesOnly yes
+
+{{- if $.work }}
+Include work.conf
+{{ else }}
+Include personal.conf
+{{ end -}}
