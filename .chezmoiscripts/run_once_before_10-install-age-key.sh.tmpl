@@ -15,22 +15,24 @@ print_msg() {
 
 print_msg "Installing AGE key ========================================================" $YELLOW
 
+# Check if age key already exists and has content
+if [ -s {{ .chezmoi.homeDir }}/.config/age/keys.txt ]; then
+  print_msg "Age key already exists, skipping..." $GREEN
+  exit 0
+fi
+
 # Setup fedora cli utils
 {{ if (eq .os "fedora") -}}
   print_msg "Detected Fedora, installing tools" $GREEN
-  
-  # Install doppler repo
-  sudo rpm --import 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key'
-  curl -sLf --retry 3 --tlsv1.2 --proto "=https" 'https://packages.doppler.com/public/cli/config.rpm.txt' | sudo tee /etc/yum.repos.d/doppler-cli.repo
-  
+
   # install pre-reqs
   sudo dnf upgrade
-  sudo dnf install -y doppler jq gnupg
+  sudo dnf install -y jq gnupg
   mkdir -p {{ .chezmoi.homeDir }}/.config/age/
   touch {{ .chezmoi.homeDir }}/.config/age/keys.txt
-  
-  # doppler login
-  doppler login
 
-  doppler secrets download -p chezmoi -c prd --no-file  | jq -r '.AGE_KEY' > ~/.config/age/keys.txt
+  # 1Password CLI login (requires 1Password desktop app with CLI integration enabled)
+  eval $(op signin)
+
+  op read "op://Personal/Age key/notesPlain" > ~/.config/age/keys.txt
 {{ end -}}

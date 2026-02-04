@@ -26,6 +26,9 @@ if [ ! $(command -v aqua) ] || [ $(aqua -v | head -n1 | cut -d" " -f3 | sed "s/^
   curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.0.4/aqua-installer | bash -s -- -v $current_aqua_version
 fi
 
+# Add aqua to PATH
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+
 # This script will run whenever I added something to .config/aqua.yaml
 # .config/aqua.yaml hash: {{ include "private_dot_config/aqua/aqua.yaml.tmpl" | sha256sum }}
 print_msg "Aqua is updating packages..." $GREEN

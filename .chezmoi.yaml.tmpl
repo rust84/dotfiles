@@ -20,8 +20,8 @@
   {{- $yubikey = false -}}
 {{- end -}}
 
-{{ if eq .chezmoi.osRelease.id "fedoraremixforwsl" -}}
-  # Feodra Remix in WSL
+{{ if or (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.id "fedoraremixforwsl") -}}
+  # Fedora (Workstation or WSL Remix)
   {{ $os = "fedora" }}
 {{ end -}}
 

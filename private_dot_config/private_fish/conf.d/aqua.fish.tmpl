@@ -1,6 +1,9 @@
 set -gx AQUA_CONFIG "$XDG_CONFIG_HOME/aqua/aqua.yaml"
 set -gx AQUA_GLOBAL_CONFIG "$XDG_CONFIG_HOME/aqua/aqua.yaml"
 
+# Add aqua binary location first (aqua-proxy needs to find aqua)
+fish_add_path $XDG_DATA_HOME/aquaproj-aqua/bin
+# Add aqua-managed tools
 fish_add_path $AQUA_ROOT_DIR/bin
 
 {{ if ne .chezmoi.os "darwin" -}}

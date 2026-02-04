@@ -17,11 +17,19 @@ print_msg() {
 print_msg "Ensure Fish shell ===========================================" $YELLOW
 
 # Set fish as default shell
-if [ $SHELL != $(which fish) ]; then
+if ! command -v fish &> /dev/null; then
+	print_msg "Fish not installed, skipping shell change" $RED
+	exit 0
+fi
 
+# Check actual login shell from passwd, not $SHELL env var
+current_shell=$(getent passwd "$(whoami)" | cut -d: -f7)
+fish_path=$(which fish)
+
+if [ "$current_shell" != "$fish_path" ]; then
 	print_msg "Changing shell to fish ===========================================" $GREEN
 	echo "Changing default shell to fish"
-	chsh -s $(which fish)
+	chsh -s "$fish_path" || print_msg "chsh failed - you may need to run 'chsh -s $fish_path' manually" $RED
 else
 	print_msg "Shell already fish ===========================================" $GREEN
 fi
