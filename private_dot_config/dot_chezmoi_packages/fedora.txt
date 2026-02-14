@@ -5,6 +5,7 @@
   fish
   git
   htop
+  ImageMagick
   rpmfusion-nonfree-release-tainted
   dnf-plugins-core
   nfs-utils
