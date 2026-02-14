@@ -1,5 +1,10 @@
-if test -f "$XDG_CACHE_HOME/wal/colors.fish"
-  if status is-interactive
-      source "$XDG_CACHE_HOME/wal/colors.fish"
-  end
+if status is-interactive
+    # Apply terminal color palette (16 ANSI colors)
+    if test -f "$XDG_CACHE_HOME/wal/sequences"
+        command cat "$XDG_CACHE_HOME/wal/sequences" > /dev/tty
+    end
+    # Apply fish shell syntax colors
+    if test -f "$XDG_CACHE_HOME/wal/colors.fish"
+        source "$XDG_CACHE_HOME/wal/colors.fish"
+    end
 end
