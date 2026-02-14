@@ -1,10 +1,59 @@
 if status is-interactive
-    # Apply terminal color palette (16 ANSI colors)
     if test -f "$XDG_CACHE_HOME/wal/sequences"
+        # Apply pywal terminal color palette (16 ANSI colors)
         command cat "$XDG_CACHE_HOME/wal/sequences" > /dev/tty
-    end
-    # Apply fish shell syntax colors
-    if test -f "$XDG_CACHE_HOME/wal/colors.fish"
         source "$XDG_CACHE_HOME/wal/colors.fish"
+    else
+        # Nord fallback palette
+        # Set the terminal's 16-color ANSI palette (OSC 4)
+        printf '\e]4;0;rgb:2e/34/40\e\\' > /dev/tty  # black   (Nord0)
+        printf '\e]4;1;rgb:bf/61/6a\e\\' > /dev/tty  # red     (Nord11)
+        printf '\e]4;2;rgb:a3/be/8c\e\\' > /dev/tty  # green   (Nord14)
+        printf '\e]4;3;rgb:eb/cb/8b\e\\' > /dev/tty  # yellow  (Nord13)
+        printf '\e]4;4;rgb:81/a1/c1\e\\' > /dev/tty  # blue    (Nord9)
+        printf '\e]4;5;rgb:b4/8e/ad\e\\' > /dev/tty  # magenta (Nord15)
+        printf '\e]4;6;rgb:88/c0/d0\e\\' > /dev/tty  # cyan    (Nord8)
+        printf '\e]4;7;rgb:d8/de/e9\e\\' > /dev/tty  # white   (Nord4)
+        printf '\e]4;8;rgb:4c/56/6a\e\\' > /dev/tty  # bright black   (Nord3)
+        printf '\e]4;9;rgb:bf/61/6a\e\\' > /dev/tty  # bright red     (Nord11)
+        printf '\e]4;10;rgb:a3/be/8c\e\\' > /dev/tty # bright green   (Nord14)
+        printf '\e]4;11;rgb:eb/cb/8b\e\\' > /dev/tty # bright yellow  (Nord13)
+        printf '\e]4;12;rgb:88/c0/d0\e\\' > /dev/tty # bright blue    (Nord8)
+        printf '\e]4;13;rgb:b4/8e/ad\e\\' > /dev/tty # bright magenta (Nord15)
+        printf '\e]4;14;rgb:8f/bc/bb\e\\' > /dev/tty # bright cyan    (Nord7)
+        printf '\e]4;15;rgb:ec/ef/f4\e\\' > /dev/tty # bright white   (Nord6)
+        printf '\e]10;rgb:d8/de/e9\e\\' > /dev/tty   # foreground     (Nord4)
+        printf '\e]11;rgb:2e/34/40\e\\' > /dev/tty   # background     (Nord0)
+
+        # Fish syntax colors
+        set -g fish_color_normal d8dee9
+        set -g fish_color_command 88c0d0 --bold
+        set -g fish_color_keyword 81a1c1
+        set -g fish_color_param d8dee9
+        set -g fish_color_option e5e9f0
+        set -g fish_color_quote a3be8c
+        set -g fish_color_comment 4c566a --italics
+        set -g fish_color_error bf616a --bold
+        set -g fish_color_end 88c0d0
+        set -g fish_color_operator ebcb8b
+        set -g fish_color_escape ebcb8b
+        set -g fish_color_redirection b48ead --bold
+        set -g fish_color_valid_path --underline
+        set -g fish_color_autosuggestion 4c566a
+        set -g fish_color_user a3be8c --bold
+        set -g fish_color_host 88c0d0
+        set -g fish_color_host_remote ebcb8b
+        set -g fish_color_cwd 81a1c1
+        set -g fish_color_cwd_root bf616a
+        set -g fish_color_cancel bf616a --reverse
+        set -g fish_color_status bf616a
+        set -g fish_color_selection --bold --background=434c5e
+        set -g fish_color_search_match --bold --background=434c5e
+        set -g fish_color_history_current --bold
+        set -g fish_pager_color_progress d8dee9 --background=434c5e
+        set -g fish_pager_color_prefix 88c0d0 --bold --underline
+        set -g fish_pager_color_completion d8dee9
+        set -g fish_pager_color_description 4c566a
+        set -g fish_pager_color_selected_background --background=434c5e
     end
 end
