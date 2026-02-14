@@ -3,7 +3,6 @@
 {{- $os := "" }}
 {{- $work := false -}}{{/* true if this is a work machine */}}
 {{- $agekey := false -}}{{/* true if this machine has agekey to decrypt secret */}}
-{{- $yubikey := false -}}{{/* true if this machine requires yubikey setup */}}
 {{- $kubernetes := false -}}{{/* true if this machine is used for Kubernetes work */}}
 
 {{- if $personal -}}
@@ -11,13 +10,11 @@
   {{- $work = false -}}
   {{- $agekey = true -}}
   {{- $kubernetes = true -}}
-  {{- $yubikey = true -}}
 {{- else -}}
   {{- $personal = false -}}
   {{- $work = true -}}
   {{- $agekey = true -}}
   {{- $kubernetes = true -}}
-  {{- $yubikey = false -}}
 {{- end -}}
 
 {{ if or (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.id "fedoraremixforwsl") -}}
@@ -42,7 +39,6 @@ data:
   personal: {{ $personal }}
   work: {{ $work }}
   agekey: {{ $agekey }}
-  yubikey: {{ $yubikey }}
   kubernetes: {{ $kubernetes }}
   os: {{ $os | quote }}
 
