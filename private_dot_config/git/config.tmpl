@@ -10,11 +10,7 @@
   excludesfile = {{ .chezmoi.homeDir }}/.config/git/gitignore_global
 
 [commit]
-{{- if or $.personal $.work }}
   gpgsign = true
-{{- else }}
-  gpgsign = false
-{{- end }}
 
 [credential]
   credentialStore = cache
@@ -33,9 +29,6 @@
 
 [tag]
   forceSignAnnotated = true
-
-[gpg]
-  program = gpg
 
 [push]
   autoSetupRemote = true
