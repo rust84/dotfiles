@@ -1,0 +1,12 @@
+[include]
+  path = identity_personal
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+{{- if eq .chezmoi.osRelease.id "fedoraremixforwsl" }}
+  program = "/mnt/c/Users/Russell/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe"
+{{- else }}
+  program = "/opt/1Password/op-ssh-sign"
+{{- end }}
