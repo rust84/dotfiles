@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/derailed/k9s/master/internal/config/json/schemas/k9s.json
+k9s:
+  liveViewAutoRefresh: false
+  screenDumpDir: /home/russell/.local/state/k9s/screen-dumps
+  refreshRate: 2
+  maxConnRetry: 5
+  readOnly: false
+  noExitOnCtrlC: true
+  ui:
+    skin: transparent
+    enableMouse: false
+    headless: false
+    logoless: false
+    crumbsless: false
+    noIcons: false
+  skipLatestRevCheck: false
+  disablePodCounting: false
+  shellPod:
+    image: busybox:1.37.0
+    namespace: default
+    limits:
+      cpu: 100m
+      memory: 100Mi
+  imageScans:
+    enable: false
+    exclusions:
+      namespaces: []
+      labels: {}
+  logger:
+    tail: 1000
+    buffer: 10000
+    sinceSeconds: -1
+    textWrap: true
+    showTime: true
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 80
+    memory:
+      critical: 90
+      warn: 80
