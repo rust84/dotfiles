@@ -30,8 +30,8 @@ k9s:
     tail: 1000
     buffer: 10000
     sinceSeconds: -1
-    textWrap: true
-    showTime: true
+    textWrap: false
+    showTime: false
   thresholds:
     cpu:
       critical: 90
