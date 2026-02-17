@@ -24,7 +24,7 @@ set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx HOMEBREW_NO_INSTALL_CLEANUP 1
 set -gx HOMEBREW_NO_ENV_HINTS 1
 
-set -gx PNPM_HOME "/home/rhall/.local/share/pnpm"
+set -gx PNPM_HOME "/home/{{ .chezmoi.username }}/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end

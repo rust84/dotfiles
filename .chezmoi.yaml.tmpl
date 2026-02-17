@@ -17,6 +17,21 @@
   {{- $kubernetes = true -}}
 {{- end -}}
 
+{{- $windowsUsername := "" -}}
+{{- $wslWindowsUsername := "" -}}
+{{- $email := "" -}}
+{{- if $agekey -}}
+  {{- $userdataYaml := output "chezmoi" "decrypt" (joinPath .chezmoi.sourceDir "encrypted_dot_chezmoi_userdata.yaml.age") -}}
+  {{- $userdata := $userdataYaml | fromYaml -}}
+  {{- $windowsUsername = $userdata.windows_username -}}
+  {{- $email = $userdata.email -}}
+{{- end -}}
+{{- if $work -}}
+  {{- $wslWindowsUsername = .chezmoi.username -}}
+{{- else -}}
+  {{- $wslWindowsUsername = $windowsUsername -}}{{/* Personal machine: Windows username is capitalized but WSL username is lowercase */}}
+{{- end -}}
+
 {{ if or (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.id "fedoraremixforwsl") -}}
   # Fedora (Workstation or WSL Remix)
   {{ $os = "fedora" }}
@@ -41,6 +56,8 @@ data:
   agekey: {{ $agekey }}
   kubernetes: {{ $kubernetes }}
   os: {{ $os | quote }}
+  wsl_windows_username: {{ $wslWindowsUsername | quote }}
+  email: {{ $email | quote }}
 
 encryption: age
 
