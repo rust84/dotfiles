@@ -17,15 +17,10 @@
   {{- $kubernetes = true -}}
 {{- end -}}
 
-{{- $windowsUsername := "" -}}
 {{- $wslWindowsUsername := "" -}}
-{{- $email := "" -}}
-{{- if $agekey -}}
-  {{- $userdataYaml := output "chezmoi" "decrypt" (joinPath .chezmoi.sourceDir "encrypted_dot_chezmoi_userdata.yaml.age") -}}
-  {{- $userdata := $userdataYaml | fromYaml -}}
-  {{- $windowsUsername = $userdata.windows_username -}}
-  {{- $email = $userdata.email -}}
-{{- end -}}
+{{- $windowsUsername := (onepasswordItemFields "chezmoi").windows_username.value -}}
+{{- $email := (onepasswordItemFields "chezmoi").email.value -}}
+
 {{- if $work -}}
   {{- $wslWindowsUsername = .chezmoi.username -}}
 {{- else -}}

@@ -6,11 +6,19 @@
 
 My dotfiles managed by chezmoi
 
-## Installation
+## Prerequisites
 
-Install [chezmoi](https://www.chezmoi.io/docs/install/#one-line-package-install).
+- [chezmoi](https://www.chezmoi.io/docs/install/#one-line-package-install)
+- [1Password CLI (`op`)](https://developer.1password.com/docs/cli/get-started/) — required for secrets (age keys, etc.)
 
-## Initizalize chezmoi
+After installing the `op` CLI, add your account and sign in before running chezmoi:
+
+```sh
+op account add --address my.1password.eu --email $EMAIL
+eval $(op signin)
+```
+
+## Initialize chezmoi
 
 ```sh
 chezmoi --source ~/repos/dotfiles init https://github.com/rust84/dotfiles.git
