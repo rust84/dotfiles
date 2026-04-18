@@ -44,6 +44,8 @@
 
 format: yaml
 sourceDir: {{ .chezmoi.sourceDir | quote }}
+cd:
+  command: {{ lookPath "fish" | quote }}
 
 data:
   personal: {{ $personal }}
