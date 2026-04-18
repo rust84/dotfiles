@@ -1,6 +1,8 @@
 #!{{ lookPath "bash" }}
 # Ensure shell is changed to fish
 
+set -euo pipefail
+
 # Define colors
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -24,12 +26,22 @@ fi
 
 # Check actual login shell from passwd, not $SHELL env var
 current_shell=$(getent passwd "$(whoami)" | cut -d: -f7)
-fish_path=$(which fish)
+fish_path=$(command -v fish)
 
 if [ "$current_shell" != "$fish_path" ]; then
 	print_msg "Changing shell to fish ===========================================" $GREEN
 	echo "Changing default shell to fish"
-	chsh -s "$fish_path" || print_msg "chsh failed - you may need to run 'chsh -s $fish_path' manually" $RED
+
+	if chsh -s "$fish_path"; then
+		print_msg "Shell changed to fish" $GREEN
+	elif sudo chsh -s "$fish_path" "$(whoami)"; then
+		print_msg "Shell changed to fish with sudo" $GREEN
+	elif sudo usermod --shell "$fish_path" "$(whoami)"; then
+		print_msg "Shell changed to fish with usermod" $GREEN
+	else
+		print_msg "Unable to change shell automatically. Run 'chsh -s $fish_path' manually." $RED
+		exit 1
+	fi
 else
 	print_msg "Shell already fish ===========================================" $GREEN
 fi

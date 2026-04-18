@@ -1,20 +1,34 @@
 {{- if $.kubernetes }}
-alias k "$AQUA_ROOT_DIR/bin/kubectl"
-alias kc "$AQUA_ROOT_DIR/bin/kubecolor"
+if test -x "$AQUA_ROOT_DIR/bin/kubectl"
+    alias k "$AQUA_ROOT_DIR/bin/kubectl"
+end
+if test -x "$AQUA_ROOT_DIR/bin/kubecolor"
+    alias kc "$AQUA_ROOT_DIR/bin/kubecolor"
+end
 alias kubectx 'kubectl ctx'
 alias kubens 'kubectl ns'
 {{- end }}
 
-alias cat "$AQUA_ROOT_DIR/bin/bat"
-alias dig "$AQUA_ROOT_DIR/bin/doggo"
-alias df "$AQUA_ROOT_DIR/bin/duf"
-alias watch "$AQUA_ROOT_DIR/bin/viddy"
+if test -x "$AQUA_ROOT_DIR/bin/bat"
+    alias cat "$AQUA_ROOT_DIR/bin/bat"
+end
+if test -x "$AQUA_ROOT_DIR/bin/doggo"
+    alias dig "$AQUA_ROOT_DIR/bin/doggo"
+end
+if test -x "$AQUA_ROOT_DIR/bin/duf"
+    alias df "$AQUA_ROOT_DIR/bin/duf"
+end
+if test -x "$AQUA_ROOT_DIR/bin/viddy"
+    alias watch "$AQUA_ROOT_DIR/bin/viddy"
+end
 
-alias ls "$AQUA_ROOT_DIR/bin/lsd"
-alias ll "$AQUA_ROOT_DIR/bin/lsd -l"
-alias la "$AQUA_ROOT_DIR/bin/lsd -a"
-alias lt "$AQUA_ROOT_DIR/bin/lsd --tree"
-alias lla "$AQUA_ROOT_DIR/bin/lsd -la"
+if test -x "$AQUA_ROOT_DIR/bin/lsd"
+    alias ls "$AQUA_ROOT_DIR/bin/lsd"
+    alias ll "$AQUA_ROOT_DIR/bin/lsd -l"
+    alias la "$AQUA_ROOT_DIR/bin/lsd -a"
+    alias lt "$AQUA_ROOT_DIR/bin/lsd --tree"
+    alias lla "$AQUA_ROOT_DIR/bin/lsd -la"
+end
 
 alias wget "wget --hsts-file=\"$XDG_DATA_HOME/wget-hsts\""
 alias drop_cache "sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""
