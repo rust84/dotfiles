@@ -30,3 +30,8 @@ set -gx PNPM_HOME "/home/{{ .chezmoi.username }}/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
+
+set -gx NPM_BIN (npm prefix -g)/bin
+if not string match -q -- $NPM_BIN $PATH
+  set -gx PATH "$NPM_BIN" $PATH
+end
