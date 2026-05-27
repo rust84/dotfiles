@@ -27,7 +27,13 @@ export AQUA_CONFIG="${AQUA_CONFIG:-$XDG_CONFIG_HOME/aqua/aqua.yaml}"
 export AQUA_GLOBAL_CONFIG="${AQUA_GLOBAL_CONFIG:-$AQUA_CONFIG}"
 export PATH="$AQUA_ROOT_DIR/bin:$PATH"
 
-if ! command -v aqua >/dev/null 2>&1 || [ "$(aqua -v | head -n1 | cut -d" " -f3 | sed "s/^/v/")" != "$current_aqua_version" ]; then
+installed_aqua_version=""
+if command -v aqua >/dev/null 2>&1; then
+  installed_aqua_version="$(aqua -v 2>&1 | grep -oE 'v?[0-9]+\.[0-9]+\.[0-9]+' | head -n1)"
+fi
+normalized_installed="${installed_aqua_version#v}"
+normalized_current="${current_aqua_version#v}"
+if [ -z "$installed_aqua_version" ] || [ "$normalized_installed" != "$normalized_current" ]; then
   print_msg "Aqua installing..." $GREEN
   curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.0.4/aqua-installer | bash -s -- -v $current_aqua_version
 fi
