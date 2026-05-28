@@ -1,6 +1,7 @@
 [include]
   path = identity_personal
 
+{{- if or (lookPath "1password") (contains "microsoft" .chezmoi.kernel.osrelease) }}
 [gpg]
   format = ssh
 
@@ -11,3 +12,4 @@
   program = "/opt/1Password/op-ssh-sign"
 {{- end }}
   allowedSignersFile = {{ .chezmoi.homeDir }}/.config/git/allowed_signers
+{{- end }}

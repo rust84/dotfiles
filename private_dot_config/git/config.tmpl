@@ -10,7 +10,7 @@
   excludesfile = {{ .chezmoi.homeDir }}/.config/git/gitignore_global
 
 [commit]
-  gpgsign = true
+  gpgsign = {{ if or (lookPath "1password") (contains "microsoft" .chezmoi.kernel.osrelease) }}true{{ else }}false{{ end }}
 
 [credential]
   credentialStore = cache
@@ -28,7 +28,7 @@
   submoduleSummary = false
 
 [tag]
-  forceSignAnnotated = true
+  forceSignAnnotated = {{ if or (lookPath "1password") (contains "microsoft" .chezmoi.kernel.osrelease) }}true{{ else }}false{{ end }}
 
 [push]
   autoSetupRemote = true

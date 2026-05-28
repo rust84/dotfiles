@@ -57,7 +57,7 @@ data:
   email: {{ $email | quote }}
 
 onepassword:
-  mode: {{ if lookPath "1password" }}"account"{{ else }}"service"{{ end }}
+  mode: {{ if or (lookPath "1password") (contains "microsoft" .chezmoi.kernel.osrelease) }}"account"{{ else }}"service"{{ end }}
 
 encryption: age
 
