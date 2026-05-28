@@ -20,7 +20,8 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "llama-swap (local)",
       "options": {
-        "baseURL": "https://litellm.russhome.xyz/v1"
+        "baseURL": "https://litellm.russhome.xyz/v1",
+        "apiKey": "{{ (onepasswordItemFields "Opencode LiteLLM API" "Dotfiles").api_key.value }}"
       },
       "models": {
         "gemma-4-26b-a4b": {
@@ -72,7 +73,7 @@
       "type": "local",
       "command": ["npx", "-y", "@perplexity-ai/mcp-server"],
       "environment": {
-        "PERPLEXITY_API_KEY": "{{ (onepasswordItemFields "perplexity").api_key.value }}"
+        "PERPLEXITY_API_KEY": "{{ (onepasswordItemFields "perplexity" "Dotfiles").api_key.value }}"
       }
     }
   }

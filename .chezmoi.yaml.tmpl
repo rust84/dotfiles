@@ -18,8 +18,8 @@
 {{- end -}}
 
 {{- $wslWindowsUsername := "" -}}
-{{- $windowsUsername := (onepasswordItemFields "chezmoi").windows_username.value -}}
-{{- $email := (onepasswordItemFields "chezmoi").email.value -}}
+{{- $windowsUsername := (onepasswordItemFields "chezmoi" "Dotfiles").windows_username.value -}}
+{{- $email := (onepasswordItemFields "chezmoi" "Dotfiles").email.value -}}
 
 {{- if $work -}}
   {{- $wslWindowsUsername = .chezmoi.username -}}
@@ -55,6 +55,9 @@ data:
   os: {{ $os | quote }}
   wsl_windows_username: {{ $wslWindowsUsername | quote }}
   email: {{ $email | quote }}
+
+onepassword:
+  mode: {{ if lookPath "1password" }}"account"{{ else }}"service"{{ end }}
 
 encryption: age
 
