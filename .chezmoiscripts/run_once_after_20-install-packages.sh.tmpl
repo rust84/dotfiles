@@ -63,7 +63,7 @@ if [[ ${#packages[@]} -gt 0 ]]; then
 
 {{ if (eq .os "fedora") -}}
   # Install all packages using dnf
-  sudo dnf install -y --skip-unavailable "${packages[@]}"
+  sudo dnf install -y "${packages[@]}"
 {{- end }}
 
 {{ if (eq .os "ubuntu") -}}
