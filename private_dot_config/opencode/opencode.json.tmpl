@@ -6,14 +6,18 @@
     },
     "explore": {
       "disable": true
-    }
+    },
+    "build": { "tools": { "task": false } },
+    "plan":  { "tools": { "task": false } }
   },
+  "compaction": { "auto": true, "reserved": 16384 },
   "lsp": {
     "typescript": {
       "disabled": false,
       "command": ["typescript-language-server", "--stdio"]
     }
   },
+  "model": "llama-swap/qwen3.6-27b-mtp",
   "plugin": ["opencode-tps-meter@latest"],
   "provider": {
     "llama-swap": {
@@ -46,10 +50,12 @@
         },
         "qwen3.6-35b-mtp": {
           "name": "Qwen 3.6 35B MTP (local)",
-          "options": {}
+          "limit": { "context": 262144, "output": 32768 },
+	  "options": {}
         },
         "qwen3.6-27b-mtp": {
           "name": "Qwen 3.6 27B MTP (local)",
+          "limit": { "context": 262144, "output": 32768 },	  
           "options": {}
         },
         "qwen3-coder-next": {
