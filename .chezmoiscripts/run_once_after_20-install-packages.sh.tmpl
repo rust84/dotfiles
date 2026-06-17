@@ -21,6 +21,17 @@ print_msg "Package installs ====================================================
   print_msg "Detected Fedora, triggering update" $GREEN
   PACKAGE_FILE="{{ joinPath .chezmoi.sourceDir "private_dot_config" "dot_chezmoi_packages" "fedora.txt" }}"
   sudo dnf upgrade
+
+  # Set up RPM Fusion repos so packages like rpmfusion-nonfree-release-tainted resolve.
+  # Installed per-repo and guarded by rpm -q so re-runs stay idempotent (dnf5 fails the
+  # whole transaction if a package in it is already installed).
+  fedora_version="$(rpm -E %fedora)"
+  for repo in free nonfree; do
+    if ! rpm -q "rpmfusion-${repo}-release" >/dev/null 2>&1; then
+      print_msg "Setting up RPM Fusion ${repo} repository..." $GREEN
+      sudo dnf install -y "https://mirrors.rpmfusion.org/${repo}/fedora/rpmfusion-${repo}-release-${fedora_version}.noarch.rpm"
+    fi
+  done
 {{- end }}
 
 # Setup android cli utils
