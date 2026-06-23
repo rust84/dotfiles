@@ -35,7 +35,7 @@ normalized_installed="${installed_aqua_version#v}"
 normalized_current="${current_aqua_version#v}"
 if [ -z "$installed_aqua_version" ] || [ "$normalized_installed" != "$normalized_current" ]; then
   print_msg "Aqua installing..." $GREEN
-  curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.0.4/aqua-installer | bash -s -- -v $current_aqua_version
+  curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.0.5/aqua-installer | bash -s -- -v $current_aqua_version
 fi
 
 # This script will run whenever I added something to .config/aqua.yaml
