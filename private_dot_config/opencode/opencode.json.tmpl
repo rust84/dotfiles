@@ -17,7 +17,7 @@
       "command": ["typescript-language-server", "--stdio"]
     }
   },
-  "model": "llama-swap/qwen3.6-27b-mtp",
+  "model": "llama-swap/ornith-1.0-35b",
   "plugin": ["opencode-tps-meter@latest"],
   "provider": {
     "llama-swap": {
@@ -44,35 +44,28 @@
           "name": "GPT 120B High Thinking (local)",
           "options": {}
         },
-        "qwen-3.6-35b": {
-          "name": "Qwen 3.6 35B A3B (local)",
-          "options": {}
-        },
         "qwen3.6-35b-mtp": {
           "name": "Qwen 3.6 35B MTP (local)",
           "limit": { "context": 262144, "output": 32768 },
-	  "options": {}
+          "options": {}
         },
         "qwen3.6-27b-mtp": {
           "name": "Qwen 3.6 27B MTP (local)",
           "limit": { "context": 262144, "output": 32768 },	  
           "options": {}
         },
-        "qwen3-coder-next": {
-          "name": "Qwen3 Coder Next (local)",
-          "options": {}
-        },
         "gemma3-4b-FLM": {
           "name": "Gemma 3 4B FLM (local)",
           "options": {}
         },
-       "step-3.7-flash": {
-          "name": "Step 3.7 Flash (local)",
+        "ornith-1.0-35b": {
+          "name": "Ornith 1.0 35B (local)",
+          "limit": { "context": 262144, "output": 32768 },
           "options": {}
         },
         "qwen3.5-122b": {
-	  "name": "Qwen 3.5 122B-A10B (local)",
-	  "options": {}
+          "name": "Qwen 3.5 122B-A10B (local)",
+          "options": {}
         }
       }
     }
