@@ -17,17 +17,39 @@
       "command": ["typescript-language-server", "--stdio"]
     }
   },
-  "model": "llama-swap/ornith-1.0-35b",
+  "model": "neuralwatt/GLM-5.2",
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "cat *": "allow",
+      "echo *": "allow",
+      "git *": "allow",
+      "grep *": "allow",
+      "head *": "allow",
+      "ls *": "allow",
+      "npm *": "allow",
+      "pip *": "allow",
+      "tail *": "allow",
+      "which *": "allow"
+    },
+    "external_directory": {
+      "~/repos/**": "allow"
+    }
+  },
   "plugin": ["opencode-tps-meter@latest"],
   "provider": {
     "llama-swap": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "llama-swap (local)",
       "options": {
-        "baseURL": "https://litellm.russhome.xyz/v1",
+        "baseURL": "https://litellm.roswellian.dev/v1",
         "apiKey": "{{ (onepasswordItemFields "Opencode LiteLLM API" "Dotfiles").api_key.value }}"
       },
       "models": {
+        "deepseek-v4-flash-free": {
+          "name": "DeepSeek V4 Flash (free)",
+          "options": {}
+        },
         "gemma-4-26b-a4b": {
           "name": "Gemma 4 26B A4B (local)",
           "options": {}
@@ -44,13 +66,13 @@
           "name": "GPT 120B High Thinking (local)",
           "options": {}
         },
-        "qwen3.6-35b-mtp": {
-          "name": "Qwen 3.6 35B MTP (local)",
+        "qwen3.6-35b": {
+          "name": "Qwen 3.6 35B (local)",
           "limit": { "context": 262144, "output": 32768 },
           "options": {}
         },
-        "qwen3.6-27b-mtp": {
-          "name": "Qwen 3.6 27B MTP (local)",
+        "qwen3.6-27b": {
+          "name": "Qwen 3.6 27B (local)",
           "limit": { "context": 262144, "output": 32768 },	  
           "options": {}
         },

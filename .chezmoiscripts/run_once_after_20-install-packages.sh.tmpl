@@ -20,7 +20,7 @@ print_msg "Package installs ====================================================
 {{ if (eq .os "fedora") -}}
   print_msg "Detected Fedora, triggering update" $GREEN
   PACKAGE_FILE="{{ joinPath .chezmoi.sourceDir "private_dot_config" "dot_chezmoi_packages" "fedora.txt" }}"
-  sudo dnf upgrade
+  # sudo dnf upgrade
 
   # Set up RPM Fusion repos so packages like rpmfusion-nonfree-release-tainted resolve.
   # Installed per-repo and guarded by rpm -q so re-runs stay idempotent (dnf5 fails the
