@@ -2,3 +2,9 @@
 LICENSE
 README.md
 install.sh
+
+# Owned by the jorgebucaran/nvm.fish fisher plugin, which defines nvm_data /
+# nvm_mirror there. Never let chezmoi manage this path: a source file here once
+# clobbered the plugin's init and broke `nvm install` (default version now lives
+# in conf.d/00_env.fish instead).
+.config/fish/conf.d/nvm.fish
