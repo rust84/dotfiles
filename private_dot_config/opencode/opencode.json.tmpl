@@ -17,7 +17,7 @@
       "command": ["typescript-language-server", "--stdio"]
     }
   },
-  "model": "neuralwatt/GLM-5.2",
+  "model": "glm-5.2",
   "permission": {
     "bash": {
       "*": "ask",
@@ -46,49 +46,19 @@
         "apiKey": "{{ (onepasswordItemFields "Opencode LiteLLM API" "Dotfiles").api_key.value }}"
       },
       "models": {
-        "deepseek-v4-flash-free": {
-          "name": "DeepSeek V4 Flash (free)",
-          "options": {}
-        },
-        "gemma-4-26b-a4b": {
-          "name": "Gemma 4 26B A4B (local)",
-          "options": {}
-        },
-        "gemma-4-31b": {
-          "name": "Gemma 4 31B (local)",
-          "options": {}
-        },
-        "gpt-120b": {
-          "name": "GPT 120B (local)",
-          "options": {}
-        },
-        "gpt-120b-thinking": {
-          "name": "GPT 120B High Thinking (local)",
-          "options": {}
-        },
-        "qwen3.6-35b": {
-          "name": "Qwen 3.6 35B (local)",
-          "limit": { "context": 262144, "output": 32768 },
-          "options": {}
-        },
-        "qwen3.6-27b": {
-          "name": "Qwen 3.6 27B (local)",
-          "limit": { "context": 262144, "output": 32768 },	  
-          "options": {}
-        },
-        "gemma3-4b-FLM": {
-          "name": "Gemma 3 4B FLM (local)",
-          "options": {}
-        },
-        "ornith-1.0-35b": {
-          "name": "Ornith 1.0 35B (local)",
-          "limit": { "context": 262144, "output": 32768 },
-          "options": {}
-        },
-        "qwen3.5-122b": {
-          "name": "Qwen 3.5 122B-A10B (local)",
-          "options": {}
-        }
+        "glm-5.2": { "name": "GLM-5.2 (proxy)", "options": {} },
+        "kimi-k2.7": { "name": "Kimi K2.7 (proxy)", "options": {} },
+        "MiniMax-M3-chat": { "name": "MiniMax-M3 (proxy)", "options": {} },
+        "deepseek-v4-flash-free": { "name": "DeepSeek V4 Flash (proxy)", "options": {} },
+        "gemma-4-26b-a4b": { "name": "Gemma 4 26B A4B (local)", "options": {} },
+        "gemma-4-31b": { "name": "Gemma 4 31B (local)", "options": {} },
+        "gpt-120b": { "name": "GPT 120B (local)", "options": {} },
+        "gpt-120b-thinking": { "name": "GPT 120B High Thinking (local)", "options": {} },
+        "qwen3.6-35b": { "name": "Qwen 3.6 35B (local)", "limit": { "context": 262144, "output": 32768 }, "options": {} },
+        "qwen3.6-27b": { "name": "Qwen 3.6 27B (local)", "limit": { "context": 262144, "output": 32768 }, "options": {} },
+        "gemma3-4b-FLM": { "name": "Gemma 3 4B FLM (local)", "options": {} },
+        "ornith-1.0-35b": { "name": "Ornith 1.0 35B (local)", "limit": { "context": 262144, "output": 32768 }, "options": {} },
+        "qwen3.5-122b": { "name": "Qwen 3.5 122B-A10B (local)", "options": {} }
       }
     }
   },
