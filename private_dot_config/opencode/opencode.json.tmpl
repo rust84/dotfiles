@@ -21,16 +21,20 @@
   "permission": {
     "bash": {
       "*": "ask",
-      "cat *": "allow",
-      "echo *": "allow",
       "git *": "allow",
-      "grep *": "allow",
-      "head *": "allow",
-      "ls *": "allow",
       "npm *": "allow",
-      "pip *": "allow",
-      "tail *": "allow",
-      "which *": "allow"
+      "grep *": "allow",
+      "curl *": "allow",
+      "head *": "allow",
+      "echo *": "allow",
+      "find *": "allow"
+    },
+    "read": {
+      "*": "allow"
+    },
+    "edit": {
+      "*": "ask",
+      "~/repos/**": "allow"
     },
     "external_directory": {
       "~/repos/**": "allow"
