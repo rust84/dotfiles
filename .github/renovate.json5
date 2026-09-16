@@ -35,6 +35,23 @@
       "matchStrings": [
         "# renovate: depName=(?<depName>.*) datasource=(?<datasource>.*)\\n\\s*current_\\w+_version=(?<currentValue>.+)\\b"
       ]
+    },
+    {
+      // aqua-renovate-config routes a handful of packages (aws/aws-cli,
+      // golang/tools, twistedpair/google-cloud-sdk, catenacyber/perfsprint,
+      // golang/vuln/govulncheck, anthropics/claude-code) away from the
+      // github-releases datasource to github-tags, because they publish tags
+      // but no GitHub releases. Its `default` preset ships a generic
+      // github-tags manager to pick them back up, but the `file` preset used
+      // below does not, so those packages end up detected by nothing and are
+      // never updated. This replicates the missing manager for our aqua file.
+      // https://github.com/aquaproj/aqua-renovate-config/blob/2.13.0/default.json
+      "customType": "regex",
+      "datasourceTemplate": "github-tags",
+      "fileMatch": ["^private_dot_config\\/aqua\\/aqua\\.yaml\\.tmpl$"],
+      "matchStrings": [
+        " +(?:name|'name'|\"name\") *: +(?<depName>(?<packageName>[^'\" _.@/\\n]+/[^'\" @/\\n]+)(/[^'\" /@\\n]+)*)@(?<currentValue>[^'\" \\n]+)"
+      ]
     }
   ],
   "packageRules": [
