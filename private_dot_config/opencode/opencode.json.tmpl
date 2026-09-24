@@ -42,7 +42,7 @@
       "~/repos/**": "allow"
     }
   },
-  "plugin": ["opencode-tps-meter@latest"],
+  "plugin": ["opencode-tps-meter@latest", ["@eleboucher/opencode-memini", { "base_url": "https://memini.roswellian.dev", "home":"personal/russell", "namespace": "opencode", "recall_limit": 3 }]],
   "provider": {
     "llama-swap": {
       "npm": "@ai-sdk/openai-compatible",
