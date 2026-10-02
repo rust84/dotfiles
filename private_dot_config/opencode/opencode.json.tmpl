@@ -31,13 +31,12 @@
         "timeout": 1800000
       },
       "models": {
-        "dsv4-flash-0731": { "name": "DS V4 Flash 0731 (local)", "limit": { "context": 262144, "output": 32768 } },
-        "gemma3-4b-FLM": { "name": "Gemma 3 4B FLM (local)" },
-        "gpt-6-sol": { "name": "GPT-6 Sol (proxy)" },
-        "gpt-6-luna": { "name": "GPT-6 Luna (proxy)" },
-        "MiniMax-M3-chat": { "name": "MiniMax-M3 (proxy)" },
-        "ornith-1.5-35b": { "name": "Ornith 1.5 35B (local)", "limit": { "context": 262144, "output": 32768 } },
-        "qwen3.8-27b": { "name": "Qwen 3.8 27B (local)", "limit": { "context": 262144, "output": 32768 } },
+        "dsv4-flash-0731": { "name": "DS V4 Flash 0731 (local)", "limit": { "context": 262144, "output": 16384 } },
+        "gpt-6-sol": { "name": "GPT-6 Sol (proxy)", "limit": { "context": 1050000, "output": 128000 } },
+        "gpt-6-luna": { "name": "GPT-6 Luna (proxy)", "limit": { "context": 1050000, "output": 128000 } },
+        "MiniMax-M3-chat": { "name": "MiniMax-M3 (proxy)", "limit": { "context": 1000000, "output": 131072 } },
+        "ornith-1.5-35b": { "name": "Ornith 1.5 35B (local)", "limit": { "context": 262144, "output": 16384 } },
+        "qwen3.8-27b": { "name": "Qwen 3.8 27B (local)", "limit": { "context": 262144, "output": 16384 } },
         "qwen3.8-flash-next": {
           "name": "Qwen 3.8 Flash Next (local)",
           "limit": { "context": 245760, "output": 32768 },
@@ -48,6 +47,19 @@
   },
   "mcp": {
     "servers": {
+      "toolhive": {
+        "type": "remote",
+        "url": "https://mcp.roswellian.dev/mcp",
+        "enabled": true
+      },
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+        "enabled": true,
+        "headers": {
+          "CONTEXT7_API_KEY": "{{ (onepasswordItemFields "context7" "Dotfiles").api_key.value }}"
+        }
+      },
       "perplexity": {
         "type": "local",
         "command": ["npx", "-y", "@perplexity-ai/mcp-server"],
