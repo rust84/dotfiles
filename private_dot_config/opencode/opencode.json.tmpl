@@ -1,75 +1,61 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "agent": {
-    "general": {
-      "disable": true
-    },
-    "explore": {
-      "disable": true
-    },
-    "build": { "tools": { "task": false } },
-    "plan":  { "tools": { "task": false } }
-  },
-  "compaction": { "auto": true, "reserved": 16384 },
+  "enabled_providers": ["litellm"],
+  "compaction": { "auto": true, "keep": { "tokens": 20000 }, "buffer": 16384 },
   "lsp": {
     "typescript": {
       "disabled": false,
       "command": ["typescript-language-server", "--stdio"]
     }
   },
-  "model": "qwen3.8-27b",
-  "permission": {
-    "bash": {
-      "*": "ask",
-      "git *": "allow",
-      "npm *": "allow",
-      "grep *": "allow",
-      "curl *": "allow",
-      "head *": "allow",
-      "echo *": "allow",
-      "find *": "allow",
-      "flate *": "allow",
-      "kubectl get *": "allow"
-    },
-    "read": {
-      "*": "allow"
-    },
-    "edit": {
-      "*": "ask",
-      "~/repos/**": "allow"
-    },
-    "external_directory": {
-      "~/repos/**": "allow"
+  "model": "qwen3.8-flash-next",
+  "permission": "allow",
+  "plugins": [
+    "opencode-tps-meter",
+    {
+      "package": "@eleboucher/opencode-memini-v2@0.7.32",
+      "options": {
+        "base_url": "https://memini.roswellian.dev",
+        "home": "personal/russell",
+        "namespace": "opencode",
+        "recall_limit": 3
+      }
     }
-  },
-  "plugin": ["opencode-tps-meter@latest", ["@eleboucher/opencode-memini", { "base_url": "https://memini.roswellian.dev", "home":"personal/russell", "namespace": "opencode", "recall_limit": 3 }]],
+  ],
   "provider": {
-    "llama-swap": {
+    "litellm": {
+      "name": "LiteLLM OpenAI",
       "npm": "@ai-sdk/openai-compatible",
-      "name": "llama-swap (local)",
       "options": {
         "baseURL": "https://litellm.roswellian.dev/v1",
-        "apiKey": "{{ (onepasswordItemFields "Opencode LiteLLM API" "Dotfiles").api_key.value }}"
+        "apiKey": "{{ (onepasswordItemFields "Opencode LiteLLM API" "Dotfiles").api_key.value }}",
+        "timeout": 1800000
       },
       "models": {
-        "dsv4-flash-0731": { "name": "DS V4 Flash 0731 (local)", "limit": { "context": 262144, "output": 32768 }, "options": {} },
-        "gemma3-4b-FLM": { "name": "Gemma 3 4B FLM (local)", "options": {} },
-        "gpt-6-sol": { "name": "GPT-6 Sol (proxy)", "options": {} },
-        "gpt-6-luna": { "name": "GPT-6 Luna (proxy)", "options": {} },
-        "MiniMax-M3-chat": { "name": "MiniMax-M3 (proxy)", "options": {} },
-        "ornith-1.5-35b": { "name": "Ornith 1.5 35B (local)", "limit": { "context": 262144, "output": 32768 }, "options": {} },
-        "qwen3.8-27b": { "name": "Qwen 3.8 27B (local)", "limit": { "context": 262144, "output": 32768 }, "options": {} },
-        "qwen3.8-flash-next": { "name": "Qwen 3.8 Flash Next (local)", "limit": { "context": 262144, "output": 32768 }, "modalities": { "input": ["text", "image"], "output": ["text"] }, "options": {} }
+        "dsv4-flash-0731": { "name": "DS V4 Flash 0731 (local)", "limit": { "context": 262144, "output": 32768 } },
+        "gemma3-4b-FLM": { "name": "Gemma 3 4B FLM (local)" },
+        "gpt-6-sol": { "name": "GPT-6 Sol (proxy)" },
+        "gpt-6-luna": { "name": "GPT-6 Luna (proxy)" },
+        "MiniMax-M3-chat": { "name": "MiniMax-M3 (proxy)" },
+        "ornith-1.5-35b": { "name": "Ornith 1.5 35B (local)", "limit": { "context": 262144, "output": 32768 } },
+        "qwen3.8-27b": { "name": "Qwen 3.8 27B (local)", "limit": { "context": 262144, "output": 32768 } },
+        "qwen3.8-flash-next": {
+          "name": "Qwen 3.8 Flash Next (local)",
+          "limit": { "context": 245760, "output": 32768 },
+          "capabilities": { "input": ["text", "image"], "output": ["text"] }
+        }
       }
     }
   },
   "mcp": {
-    "perplexity": {
-      "enabled": true,
-      "type": "local",
-      "command": ["npx", "-y", "@perplexity-ai/mcp-server"],
-      "environment": {
-        "PERPLEXITY_API_KEY": "{{ (onepasswordItemFields "perplexity" "Dotfiles").api_key.value }}"
+    "servers": {
+      "perplexity": {
+        "type": "local",
+        "command": ["npx", "-y", "@perplexity-ai/mcp-server"],
+        "disabled": false,
+        "environment": {
+          "PERPLEXITY_API_KEY": "{{ (onepasswordItemFields "perplexity" "Dotfiles").api_key.value }}"
+        }
       }
     }
   }
